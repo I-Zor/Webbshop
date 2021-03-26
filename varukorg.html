@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varukorg</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <h1>Varukorg</h1>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #6930C3">
+
+        <div class="container-fluid">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+
+                <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html" style="font-size:x-large">Hem</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="om-oss.html" style="font-size:x-large">Om oss</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produkter.html" style="font-size:x-large">Produkter</a>
+                    </li>
+                </ul>
+
+                <p class="mx-auto"
+                    style="color: #56CFE1; text-align:start; font-size:xx-large; margin-bottom: 0; font-weight: bold; text-shadow: 2px 2px #5E60CE ">
+                    Ivonas butik
+                </p>
+
+                <form class="d-flex pe-4">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+                <a href="varukorg.html" target="_blank"><img class="img-fluid rounded-circle" width="70"
+                        src="/images/varukorg.jpg" alt="Varukorg"></a>
+
+            </div>
+        </div>
+    </nav>
+
+    <br><br><br>
+
+    <h3 class="ps-5 fw-bold">
+        Varukorg
+    </h3>
+    <br>
+    <table class="table ms-5" style="width: 93%;">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Produkt</th>
+                <th scope="col">Price</th>
+                <th scope="col">Antal</th>
+            </tr>
+        </thead>
+        <tbody id="products"> </tbody>
+    </table>
+
+    <br>
+
+    <div class="mb-3 ms-5">
+        <label for="namn" class="form-label">Namn</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="namn" placeholder="">
+        </div>
+    </div>
+    <div class="mb-3 ms-5">
+        <label for="efternamn" class="form-label">Efternamn</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="efternamn" placeholder="">
+        </div>
+    </div>
+    <div class="mb-3 ms-5">
+        <label for="telefon" class="form-label">Telefon</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="telefon" placeholder="">
+        </div>
+    </div>
+    <div class="mb-3 ms-5">
+        <label for="e-post" class="form-label">E-post</label>
+        <div class="col-sm-4">
+            <input type="email" class="form-control" id="e-post" placeholder="">
+        </div>
+    </div>
+    <div class="mb-3 ms-5">
+        <label for="adress" class="form-label">Adress</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="adress" placeholder="">
+        </div>
+    </div>
+    <div class="mb-3 ms-5">
+        <label for="postnummer" class="form-label">Postnummer</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="postnummer" placeholder="">
+        </div>
+    </div>
+    <div class="mb-3 ms-5">
+        <label for="ort" class="form-label">Ort</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="ort" placeholder="">
+        </div>
+    </div>
+    <br><br>
+    <div class="mb-3 ps-5">
+        <button id="order" class="btn btn-outline-info">
+            Beställ
+        </button>
+    </div>
+    <br><br><br><br>
+
+    <footer>
+        <p style="text-align: center; font-size:medium">
+            <strong>Ivonas butik</strong><br>
+            Brunnsängsvägen 2 *** 15248 Södertälje *** lifehacks@lifehacks.se *** 070/211-04-92
+        </p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            render();
+            validate();
+        });
+
+        function render() {
+            let cart = [];
+            for (var i = 1; i <= localStorage.length; i++) {
+                if (localStorage.getItem(i)) {
+                    let product = JSON.parse(localStorage.getItem(i));
+                    console.log(product);
+                    cart.push(product);
+                }
+            }
+            let cart2 = Array.prototype.concat.apply([], cart);
+            //console.log(cart2);
+
+            cart2.forEach(element => {
+                let round = parseInt(element.price).toFixed(2);
+                $("#products").append(
+                    `<tr>
+                        <td><img src="${element.image}" alt="img" style="width:3rem"></td>
+                        <td><h5>${element.title}</h5></td>
+                        <td>${round} kr</td>
+                        <td> <input type="number" max="999" min="0" value="1" style="width:2cm"></button></td>
+                        </tr>`);
+
+            });
+        }
+
+        function validate() {
+            $("#order").click(function () {
+                let testLetters = new RegExp('^[a-zA-ZåäöÅÄÖ\s\d{1,3}]');
+                let testNumbers = new RegExp('^[0-9]');
+                let missinginfo = "";
+                if ($("#namn").val() == "" || (testNumbers.test($("#namn").val()))) {
+                    missinginfo += "\n - Namn";
+                }
+                if ($("#efternamn").val() == "" || (testNumbers.test($("#efternamn").val()))) {
+                    missinginfo += "\n - Efternamn";
+                }
+                if ($("#telefon").val() == "" || (testLetters.test($("#telefon").val()))) {
+                    missinginfo += "\n - Telefon"
+                }
+                if ($("#e-post").val() == "" || ($("#e-post").val().includes('@') == false)) {
+                    missinginfo += "\n - E-post"
+                }
+                if ($("#adress").val() == "") {
+                    missinginfo += "\n - Adress"
+                }
+                if ($("#postnummer").val() == "" || (testLetters.test($("#postnummer").val()))) {
+                    missinginfo += "\n - Postnummer"
+                }
+                if ($("#ort").val() == "" || (testNumbers.test($("#ort").val()))) {
+                    missinginfo += "\n - Ort"
+                }
+                if (missinginfo != "") {
+                    alert(`Du har inte fyllt i fälten:\n${missinginfo}\n\nVar god och fyll i de angivna fälten.`)
+                }
+                else {
+                    alert("Tack för din beställning!");
+                    $("#namn").val('');
+                    $("#efternamn").val('');
+                    $("#telefon").val('');
+                    $("#e-post").val('');
+                    $("#adress").val('');
+                    $("#postnummer").val('');
+                    $("#ort").val('');
+                }
+
+            });
+
+        }
+
+        console.log(localStorage);
+
+
+    </script>
+
+</body>
+
+</html>
