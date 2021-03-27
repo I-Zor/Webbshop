@@ -50,7 +50,7 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
-                <a href="varukorg.html" target="_blank"><img class="img-fluid rounded-circle" width="70"
+                <a href="varukorg.html"></a><img class="img-fluid rounded-circle" width="70"
                         src="/images/varukorg.jpg" alt="Varukorg"></a>
 
             </div>
@@ -175,16 +175,16 @@
 
         function validate() {
             $("#order").click(function () {
-                let testLetters = new RegExp('^[a-zA-ZåäöÅÄÖ\s\d{1,3}]');
-                let testNumbers = new RegExp('^[0-9]');
+                let testLetters = new RegExp('^[a-zA-Z]+$');
+                let testNumbers = new RegExp('^[0-9]+$');
                 let missinginfo = "";
-                if ($("#namn").val() == "" || (testNumbers.test($("#namn").val()))) {
+                if ($("#namn").val() == "" || !(testLetters.test($("#namn").val()))) {
                     missinginfo += "\n - Namn";
                 }
-                if ($("#efternamn").val() == "" || (testNumbers.test($("#efternamn").val()))) {
+                if ($("#efternamn").val() == "" || !(testLetters.test($("#efternamn").val()))) {
                     missinginfo += "\n - Efternamn";
                 }
-                if ($("#telefon").val() == "" || (testLetters.test($("#telefon").val()))) {
+                if ($("#telefon").val() == "" || !(testNumbers.test($("#telefon").val()))) {
                     missinginfo += "\n - Telefon"
                 }
                 if ($("#e-post").val() == "" || ($("#e-post").val().includes('@') == false)) {
@@ -193,10 +193,10 @@
                 if ($("#adress").val() == "") {
                     missinginfo += "\n - Adress"
                 }
-                if ($("#postnummer").val() == "" || (testLetters.test($("#postnummer").val()))) {
+                if ($("#postnummer").val() == "" || !(testNumbers.test($("#postnummer").val()))) {
                     missinginfo += "\n - Postnummer"
                 }
-                if ($("#ort").val() == "" || (testNumbers.test($("#ort").val()))) {
+                if ($("#ort").val() == "" || !(testLetters.test($("#ort").val()))) {
                     missinginfo += "\n - Ort"
                 }
                 if (missinginfo != "") {

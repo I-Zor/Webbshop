@@ -105,12 +105,12 @@
             });
 
 
-            $("button").on("click"(function () {
+            $("button").click(function () {
                 let btnId = $(this).attr("id");
                 let obj = $.grep(products, function (e) { return e.id == btnId });
                 localStorage.setItem(`${btnId}`, JSON.stringify(obj));
                 alert("Produkten har laggts till i varukorgen");
-            }));
+            });
             console.log(localStorage);
         }
 
