@@ -23,8 +23,7 @@
         <div class="container-fluid">
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+                data-bs-target="#collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -59,73 +58,78 @@
     </nav>
 
     <br><br><br>
-
-    <h3 class="ps-5 fw-bold">
+    <div class="container">
+    <h3 class="fw-bold">
         Varukorg
     </h3>
     <br>
-    <table class="table ms-5" style="width: 93%;">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Produkt</th>
-                <th scope="col">Price</th>
-                <th scope="col">Antal</th>
-            </tr>
-        </thead>
-        <tbody id="products"> </tbody>
-    </table>
-
-    <br>
-
-    <div class="mb-3 ms-5">
-        <label for="namn" class="form-label">Namn</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" id="namn" placeholder="">
+    
+        <div class="col-sm-12">
+            <table class="table" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Produkt</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Antal</th>
+                    </tr>
+                </thead>
+                <tbody id="products"> </tbody>
+            </table>
+        </div>
+        <br>
+        <div class="col-sm-12">
+            <div class="mb-3">
+                <label for="namn" class="form-label">Namn</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="namn" placeholder="">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="efternamn" class="form-label">Efternamn</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="efternamn" placeholder="">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="telefon" class="form-label">Telefon</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="telefon" placeholder="">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="e-post" class="form-label">E-post</label>
+                <div class="col-sm-4">
+                    <input type="email" class="form-control" id="e-post" placeholder="">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="adress" class="form-label">Adress</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="adress" placeholder="">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="postnummer" class="form-label">Postnummer</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="postnummer" placeholder="">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="ort" class="form-label">Ort</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="ort" placeholder="">
+                </div>
+            </div>
+            <br><br>
+            <div class="mb-3 ps-5">
+                <button id="order" class="btn btn-outline-info">
+                    Beställ
+                </button>
+            </div>
         </div>
     </div>
-    <div class="mb-3 ms-5">
-        <label for="efternamn" class="form-label">Efternamn</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" id="efternamn" placeholder="">
-        </div>
-    </div>
-    <div class="mb-3 ms-5">
-        <label for="telefon" class="form-label">Telefon</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" id="telefon" placeholder="">
-        </div>
-    </div>
-    <div class="mb-3 ms-5">
-        <label for="e-post" class="form-label">E-post</label>
-        <div class="col-sm-4">
-            <input type="email" class="form-control" id="e-post" placeholder="">
-        </div>
-    </div>
-    <div class="mb-3 ms-5">
-        <label for="adress" class="form-label">Adress</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" id="adress" placeholder="">
-        </div>
-    </div>
-    <div class="mb-3 ms-5">
-        <label for="postnummer" class="form-label">Postnummer</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" id="postnummer" placeholder="">
-        </div>
-    </div>
-    <div class="mb-3 ms-5">
-        <label for="ort" class="form-label">Ort</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" id="ort" placeholder="">
-        </div>
-    </div>
-    <br><br>
-    <div class="mb-3 ps-5">
-        <button id="order" class="btn btn-outline-info">
-            Beställ
-        </button>
-    </div>
+    
     <br><br><br><br>
 
     <footer>
