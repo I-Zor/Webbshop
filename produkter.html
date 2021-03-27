@@ -88,6 +88,7 @@
             const products = JSON.parse(localStorage.getItem("products"));
             products.forEach(element => {
                 let round = parseInt(element.price).toFixed(2);
+                let buttonId = element.id;
                 $("#products").append(
                     `<div class="col-sm-3 pb-5">
                             <div class="card text-center h-100" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)">
@@ -96,7 +97,7 @@
                                  <h5 class="card-title">${element.title}</h5>
                                  <h6 class="card-subtitle mb-2 text-muted">${round} kr</h6>
                                  <p class="card-text">${element.description}</p>
-                                 <button id="${element.id}" type="button" class="btn btn-lg btn-block btn-outline-info align-self-end" style="margin-top: auto">Lägg till varukorg</button></p>
+                                 <button id="${buttonId}" type="button" class="btn btn-lg btn-block btn-outline-info align-self-end" style="margin-top: auto">Lägg till varukorg</button></p>
                                  </div>
                                  </div>
                                  </div>`);
@@ -104,12 +105,12 @@
             });
 
 
-            $("button").click(function () {
+            $("button").on("click"(function () {
                 let btnId = $(this).attr("id");
                 let obj = $.grep(products, function (e) { return e.id == btnId });
                 localStorage.setItem(`${btnId}`, JSON.stringify(obj));
                 alert("Produkten har laggts till i varukorgen");
-            });
+            }));
             console.log(localStorage);
         }
 
