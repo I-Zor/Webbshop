@@ -22,8 +22,8 @@
 
         <div class="container-fluid">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"
+                aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -50,8 +50,8 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
-                <a href="varukorg.html"></a><img class="img-fluid rounded-circle" width="70"
-                        src="/images/varukorg.jpg" alt="Varukorg"></a>
+                <a href="varukorg.html"></a><img class="img-fluid rounded-circle" width="70" src="/images/varukorg.jpg"
+                    alt="Varukorg"></a>
 
             </div>
         </div>
@@ -59,11 +59,11 @@
 
     <br><br><br>
     <div class="container">
-    <h3 class="fw-bold">
-        Varukorg
-    </h3>
-    <br>
-    
+        <h3 class="fw-bold">
+            Varukorg
+        </h3>
+        <br>
+
         <div class="col-sm-12">
             <table class="table" style="width: 100%;">
                 <thead>
@@ -129,7 +129,7 @@
             </div>
         </div>
     </div>
-    
+
     <br><br><br><br>
 
     <footer>
@@ -148,30 +148,42 @@
             validate();
         });
 
-        function render() {
-            let cart = [];
-            for (var i = 1; i <= localStorage.length; i++) {
-                if (localStorage.getItem(i)) {
-                    let product = JSON.parse(localStorage.getItem(i));
-                    console.log(product);
-                    cart.push(product);
+            function render() {
+                let cart = [];
+                for (var i = 1; i <= localStorage.length; i++) {
+                    if (localStorage.getItem(i)) {
+                        let product = JSON.parse(localStorage.getItem(i));
+                        cart.push(product);
+                    }
                 }
-            }
-            let cart2 = Array.prototype.concat.apply([], cart);
-            //console.log(cart2);
+                let cart2 = Array.prototype.concat.apply([], cart);
 
-            cart2.forEach(element => {
-                let round = parseInt(element.price).toFixed(2);
-                $("#products").append(
-                    `<tr>
+                cart2.forEach(element => {
+                    let round = parseInt(element.price).toFixed(2);
+                    $("#products").append(
+                        `<tr>
                         <td><img src="${element.image}" alt="img" style="width:3rem"></td>
-                        <td><h5>${element.title}</h5></td>
+                        <td ><h5 >${element.title}</h5></td>
                         <td>${round} kr</td>
-                        <td> <input type="number" max="999" min="0" value="1" style="width:2cm"></button></td>
+                        <td> <input id="${element.id}" type="number" max="999" min="0" value="${element.amount}" style="width:2cm"></td>
                         </tr>`);
 
-            });
-        }
+                });
+
+                $("#products tr td").on("click", function () {
+                    let antal = $(this).find("input").val();
+                    let test = $(this).find("input").attr("id");
+                    console.log(antal);
+                    console.log(test);
+
+                    for (var i = 0; i <cart2.length; i++){
+                        if (cart2[i].amount !== antal && cart2[i].id == test){
+                            cart2[i].amount = antal;
+                            localStorage.setItem(`${cart2[i].id}`, JSON.stringify(cart2[i]));
+                        }
+                    }
+                });
+            }
 
         function validate() {
             $("#order").click(function () {
@@ -212,13 +224,8 @@
                     $("#postnummer").val('');
                     $("#ort").val('');
                 }
-
             });
-
         }
-
-        console.log(localStorage);
-
 
     </script>
 

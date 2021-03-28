@@ -85,8 +85,15 @@
         }
 
         function render() {
-            const products = JSON.parse(localStorage.getItem("products"));
-            products.forEach(element => {
+            let products = JSON.parse(localStorage.getItem("products"));
+
+            products.forEach(obj => {
+                Object.assign(obj, {amount: 1});
+            })
+            localStorage.setItem("products", JSON.stringify(products));
+
+             products.forEach(element => {
+
                 let round = parseInt(element.price).toFixed(2);
                 let buttonId = element.id;
                 $("#products").append(
@@ -102,6 +109,7 @@
                                  </div>
                                  </div>`);
                                  
+                                 
             });
 
 
@@ -111,7 +119,6 @@
                 localStorage.setItem(`${btnId}`, JSON.stringify(obj));
                 alert("Produkten har laggts till i varukorgen");
             });
-            console.log(localStorage);
         }
 
  
